@@ -1,3 +1,22 @@
-<p>{{summonerName}}</p>
-<p>{{soloq}}</p>
-<p>{{flex}}</p>
+<div>
+    <div fxLayout='column' class="zero">
+        <div fxLayout="row">
+            <mat-list style="width: 100%;">
+                <mat-list-item *ngFor="let match of summonerMatches;">
+                    <div matLine>
+                        <h3>
+                            {{ match.gameId }} - {{ (match.gameDuration/60).toFixed(2) }} Minutes
+                        </h3>
+                    </div>
+                    <div matLine>
+                        <p> Queue: {{match.queueId}} </p>
+                    </div>
+                    <button mat-stroked-button color="accent">Game details</button>
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <div fxLayout="row" style="width: 100%; padding-left: 16px; padding-right: 16px; padding-bottom: 16px;">
+            <button mat-stroked-button color="accent" style="width: 100%;">Load More</button>
+        </div>
+    </div>
+</div>

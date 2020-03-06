@@ -1,19 +1,37 @@
 <div>
     <div fxLayout='column' class="zero">
         <div fxLayout="row">
-            <mat-list style="width: 100%;">
-                <mat-list-item *ngFor="let match of summonerMatches;">
-                    <div matLine>
-                        <h3>
-                            {{ match.gameId }} - {{ (match.gameDuration/60).toFixed(2) }} Minutes
-                        </h3>
+            <div style="width: 100%;">
+                <div *ngFor="let match of summonerMatches;">
+                    <div fxLayout="row">
+                        <div fxLayout='column'>
+                            <img src="{{match.currentParticipant.championImage}}" alt="">
+                        </div>
+                        <div fxLayout='column' style="width: 100%;">
+                            <div fxLayout="row" fxLayoutAlign="space-between">
+                                <div fxLayout='column'>
+                                    {{ match.queueId == 420 ? 'SoloQ' : 'Flex' }}
+                                </div>
+                                <div fxLayout='column'>
+                                    {{ (match.gameDuration/60).toFixed(2) }} Minutes / {{ (match.gameCreation + match.gameDuration) | date:'yyyy-MM-dd HH:mm' }}
+                                </div>
+                            </div>
+                            <div fxLayout="row">
+                                {{ match.currentParticipant.participant.stats.kills }} /
+                                {{ match.currentParticipant.participant.stats.deaths }} /
+                                {{ match.currentParticipant.participant.stats.assists }} -
+                                {{ (((match.currentParticipant.participant.stats.kills + match.currentParticipant.participant.stats.assists) / (match.currentParticipant.participant.stats.deaths == 0 ? 1 : match.currentParticipant.participant.stats.deaths))).toFixed(2) }}
+                            </div>
+                            <div fxLayout='row'>
+                                {{ match.currentParticipant.participant.stats.totalMinionsKilled }} - {{ match.currentParticipant.participant.stats.goldEarned }}
+                            </div>
+                            <div fxLayout='row'>
+                                <button mat-stroked-button color="accent">Details</button>
+                            </div>
+                        </div>
                     </div>
-                    <div matLine>
-                        <p> Queue: {{match.queueId}} </p>
-                    </div>
-                    <button mat-stroked-button color="accent">Game detail</button>
-                </mat-list-item>
-            </mat-list>
+                </div>
+            </div>
         </div>
         <div fxLayout="row" style="width: 100%; padding-left: 16px; padding-right: 16px; padding-bottom: 16px;">
             <button mat-stroked-button color="accent" style="width: 100%;">Load More</button>

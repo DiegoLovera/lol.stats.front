@@ -24,6 +24,31 @@ export interface MatchDetail {
     participantIdentities: ParticipantIdentity[];
 }
 
+export interface SummonerMatch {
+    gameId:             number;
+    platformId:         string;
+    gameCreation:       number;
+    gameDuration:       number;
+    queueId:            number;
+    mapId:              number;
+    seasonId:           number;
+    gameVersion:        string;
+    gameMode:           string;
+    gameType:           string;
+    alliedTeam:         Team;
+    enemyTeam:          Team;
+    currentParticipant: SummonerParticipant;
+    allies:             SummonerParticipant[];
+    enemies:            SummonerParticipant[];
+}
+
+export interface SummonerParticipant {
+    participant:         Participant;
+    participantIdentity: ParticipantIdentity;
+    championName:        string;
+    championImage:       string;
+}
+
 export enum GameMode {
     Classic = "CLASSIC",
 }

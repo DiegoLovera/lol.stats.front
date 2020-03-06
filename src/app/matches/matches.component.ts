@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/services/ApiService';
-import { MatchDetail } from 'src/dtos/Entities';
+import { SummonerMatch } from 'src/dtos/Entities';
 
 @Component({
   selector: 'app-matches',
@@ -14,7 +14,7 @@ export class MatchesComponent implements OnInit {
   flex = true;
   page = 0;
   accountId = '';
-  summonerMatches: Array<MatchDetail>;
+  summonerMatches: Array<SummonerMatch>;
 
   constructor(private _Activatedroute: ActivatedRoute,
     private _router: Router,
@@ -38,7 +38,7 @@ export class MatchesComponent implements OnInit {
   getSummonerMatches(summonerName: string, page: number) {
     this._apiService.getSummonerMatches(summonerName, null, page)
       .subscribe(
-        (data: Array<MatchDetail>) => { 
+        (data: Array<SummonerMatch>) => { 
           this.summonerMatches = data;
           console.log(data);
         }

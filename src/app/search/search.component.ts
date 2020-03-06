@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { ApiService } from 'src/services/ApiService';
+import { MatchDetail, Summoner } from 'src/dtos/Entities';
 
 @Component({
   selector: 'app-search',
@@ -11,8 +13,9 @@ export class SearchComponent implements OnInit {
   summonerName = '';
   soloq = true;
   flex = true;
+  summoner: Summoner
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private apiService: ApiService) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +33,13 @@ export class SearchComponent implements OnInit {
   }
 
   onClickSearch() {
-    this.router.navigate(['/Summoner', this.summonerName], { queryParams: { soloq: this.soloq, flex: this.flex } });
+    this.apiService.getSummoner(this.summonerName).subscribe(
+      (data: Summoner) => { 
+        this.summoner = data;
+        console.log(data);
+        this.router.navigate(['/Summoner', this.summonerName], { queryParams: { soloq: this.soloq, flex: this.flex, accountId: this.summoner.accountId } });
+      }
+    );
   }
 
 }

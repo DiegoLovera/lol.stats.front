@@ -13,6 +13,7 @@ export class MatchesComponent implements OnInit {
   soloq = true;
   flex = true;
   page = 0;
+  accountId = '';
   summonerMatches: Array<MatchDetail>;
 
   constructor(private _Activatedroute: ActivatedRoute,
@@ -29,6 +30,7 @@ export class MatchesComponent implements OnInit {
       .subscribe(params => {
         this.soloq = JSON.parse(params.get('soloq'));
         this.flex = JSON.parse(params.get('flex'));
+        this.accountId = params.get('accountId');
         this.getSummonerMatches(this.summonerName, this.page);
       });
   }

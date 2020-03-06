@@ -2,35 +2,39 @@
     <div fxLayout='column' class="zero">
         <div fxLayout="row">
             <div style="width: 100%;">
-                <div *ngFor="let match of summonerMatches;">
-                    <div fxLayout="row">
-                        <div fxLayout='column'>
-                            <img src="{{match.currentParticipant.championImage}}" alt="">
-                        </div>
-                        <div fxLayout='column' style="width: 100%;">
-                            <div fxLayout="row" fxLayoutAlign="space-between">
-                                <div fxLayout='column'>
-                                    {{ match.queueId == 420 ? 'SoloQ' : 'Flex' }}
+                <mat-card *ngFor="let match of summonerMatches;"
+                    style="margin-right: 16px; margin-left: 16px; margin-top: 8px; margin-bottom: 8px;">
+                    <mat-card-title-group>
+                        <img mat-card-md-image src="{{match.currentParticipant.championImage}}" alt="">
+                        <div fxLayout="row" fxLayoutAlign="space-between" style="width: 100%; margin-left: 8px;">
+                            <div fxLayout='column'>
+                                <mat-card-title>{{ match.queueId == 420 ? 'SoloQ' : 'Flex' }}</mat-card-title>
+                                <mat-card-subtitle>{{ match.alliedTeam.win }}</mat-card-subtitle>
+                                <div fxLayout="row">
+                                    {{ match.currentParticipant.participant.stats.kills }} /
+                                    {{ match.currentParticipant.participant.stats.deaths }} /
+                                    {{ match.currentParticipant.participant.stats.assists }} -
+                                    {{ (((match.currentParticipant.participant.stats.kills + match.currentParticipant.participant.stats.assists) / (match.currentParticipant.participant.stats.deaths == 0 ? 1 : match.currentParticipant.participant.stats.deaths))).toFixed(2) }}
                                 </div>
-                                <div fxLayout='column'>
-                                    {{ (match.gameDuration/60).toFixed(2) }} Minutes / {{ (match.gameCreation + match.gameDuration) | date:'yyyy-MM-dd HH:mm' }}
+                                <div fxLayout='row'>
+                                    {{ match.currentParticipant.participant.stats.totalMinionsKilled }} -
+                                    {{ match.currentParticipant.participant.stats.goldEarned }}
                                 </div>
                             </div>
-                            <div fxLayout="row">
-                                {{ match.currentParticipant.participant.stats.kills }} /
-                                {{ match.currentParticipant.participant.stats.deaths }} /
-                                {{ match.currentParticipant.participant.stats.assists }} -
-                                {{ (((match.currentParticipant.participant.stats.kills + match.currentParticipant.participant.stats.assists) / (match.currentParticipant.participant.stats.deaths == 0 ? 1 : match.currentParticipant.participant.stats.deaths))).toFixed(2) }}
-                            </div>
-                            <div fxLayout='row'>
-                                {{ match.currentParticipant.participant.stats.totalMinionsKilled }} - {{ match.currentParticipant.participant.stats.goldEarned }}
-                            </div>
-                            <div fxLayout='row'>
-                                <button mat-stroked-button color="accent">Details</button>
+                            <div fxLayout='column'>
+                                <mat-card-title>{{ (match.gameDuration/60).toFixed(2) }} Mins.</mat-card-title>
+                                <mat-card-subtitle>
+                                    {{ (match.gameCreation + match.gameDuration) | date:'yyyy-MM-dd HH:mm' }}
+                                </mat-card-subtitle>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </mat-card-title-group>
+                    <mat-card-content>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-stroked-button color="accent">Details</button>
+                    </mat-card-actions>
+                </mat-card>
             </div>
         </div>
         <div fxLayout="row" style="width: 100%; padding-left: 16px; padding-right: 16px; padding-bottom: 16px;">

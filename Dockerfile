@@ -1,16 +1,39 @@
-FROM node:13.10.1 AS compile-image
+#############
+### build ###
+#############
 
-RUN npm install -g yarn
+# base image
+FROM node:13.10.1 as build
 
-WORKDIR /opt/ng
-COPY .npmrc package.json yarn.lock ./
-RUN yarn install
+# set working directory
+WORKDIR /app
 
-ENV PATH="./node_modules/.bin:$PATH" 
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-COPY . ./
-RUN ng build --prod
+# install and cache app dependencies
+COPY package.json /app/package.json
+RUN npm install
+RUN npm install -g @angular/cli@9.0.5
 
-FROM nginx
-COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=compile-image /opt/ng/dist/app-name /usr/share/nginx/html
+# add app
+COPY . /app
+
+# generate build
+RUN ng build --output-path=dist
+
+############
+### prod ###
+############
+
+# base image
+FROM nginx:1.16.0-alpine
+
+# copy artifact build from the 'build environment'
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# expose port 80
+EXPOSE 80
+
+# run nginx
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,18 +1,22 @@
 <div style="height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; margin: auto;">
-  <div fxLayout='column' class="zero">
-    <div fxLayout="row" style="display: flex; align-items: center; justify-content: center;">
-      <mat-form-field appearance="outline" color="accent" style="width: 600px;">
+  <div class='container'>
+    <div class="row">
+      <mat-form-field appearance="outline" color="accent" style="width: 100%;">
         <mat-label>Summoner</mat-label>
         <input matInput (keyup)="onSummonerSet($event)">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       </mat-form-field>
     </div>
-    <div fxLayout="row" fxLayoutAlign="space-between">
-      <div fxLayout="column">
-        <mat-checkbox checked="true" (change)="soloqChange($event)">SoloQ</mat-checkbox>
-        <mat-checkbox checked="true" (change)="flexChange($event)">Flex</mat-checkbox>
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <mat-checkbox checked="true" (change)="soloqChange($event)">SoloQ</mat-checkbox>
+        </div>
+        <div class="row">
+          <mat-checkbox checked="true" (change)="flexChange($event)">Flex</mat-checkbox>
+        </div>
       </div>
-      <div fxLayout="column">
+      <div class="col-6" align="right">
         <button mat-stroked-button color="accent" (click)="onClickSearch()">SEARCH</button>
       </div>
     </div>

@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
       (data: Summoner) => { 
         this.summoner = data;
         console.log(data);
-        this.router.navigate(['/Summoner', this.summonerName], { queryParams: { soloq: this.soloq, flex: this.flex, accountId: this.summoner.accountId } });
+        this.router.navigate(['/Summoner', this.summonerName], { queryParams: { soloq: this.soloq, flex: this.flex, accountId: this.summoner.accountId, page: 0 } });
       }
     );
   }

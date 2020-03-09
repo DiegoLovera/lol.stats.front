@@ -31,6 +31,7 @@ export class MatchesComponent implements OnInit {
         this.soloq = JSON.parse(params.get('soloq'));
         this.flex = JSON.parse(params.get('flex'));
         this.accountId = params.get('accountId');
+        this.page = JSON.parse(params.get('page'));
         this.getSummonerMatches(this.summonerName, this.page);
       });
   }

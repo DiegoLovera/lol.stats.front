@@ -10,12 +10,12 @@ export class ApiService {
     constructor(private http: HttpClient) { }
 
     getSummonerMatches(summonerName: string, queues: number[], page: number) { 
-        console.log("Calling service: " + 'http://35.226.66.153/api/Summoner/' + summonerName + '/Matches?queues=420&queues=440&page=' + page)
-        return this.http.get<Array<SummonerMatch>>('http://35.226.66.153/api/Summoner/' + summonerName + '/Matches?queues=420&queues=440&page=' + page)
+        console.log("Calling service: " + 'https://lol-stats-api.herokuapp.com/api/Summoner/' + summonerName + '/Matches?queues=420&queues=440&page=' + page)
+        return this.http.get<Array<SummonerMatch>>('https://lol-stats-api.herokuapp.com/api/Summoner/' + summonerName + '/Matches?queues=420&queues=440&page=' + page)
     }
 
     getSummoner(summonerName: string) {
-        console.log("Calling service: " + 'http://35.226.66.153/api/Riot/Summoner/' + summonerName)
-        return this.http.get<Summoner>('http://35.226.66.153/api/Riot/Summoner/' + summonerName)
+        console.log("Calling service: " + 'https://lol-stats-api.herokuapp.com/api/Riot/Summoner/' + summonerName)
+        return this.http.get<Summoner>('https://lol-stats-api.herokuapp.com/api/Riot/Summoner/' + summonerName)
     }
 }

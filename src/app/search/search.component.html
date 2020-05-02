@@ -1,24 +1,12 @@
-<div style="height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; margin: auto;">
-  <div class='container'>
-    <div class="row">
-      <mat-form-field appearance="outline" color="accent" style="width: 100%;">
-        <mat-label>Summoner</mat-label>
-        <input matInput (keyup)="onSummonerSet($event)">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <div class="row">
-          <mat-checkbox checked="true" (change)="soloqChange($event)">SoloQ</mat-checkbox>
-        </div>
-        <div class="row">
-          <mat-checkbox checked="true" (change)="flexChange($event)">Flex</mat-checkbox>
-        </div>
-      </div>
-      <div class="col-6" align="right">
-        <button mat-stroked-button color="accent" (click)="onClickSearch()">SEARCH</button>
-      </div>
-    </div>
-  </div>
-</div>
+<mat-toolbar role="heading" color="accent">
+  <button mat-button href="../">
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">verified_user
+      </mat-icon>
+  </button>
+  <span>LoL Stats</span>
+
+  <span style="flex: 1 1 auto;"></span>
+
+  <mat-search-bar (onEnter)="onEnter($event)"></mat-search-bar>
+
+</mat-toolbar>

@@ -16,34 +16,44 @@ export class MatchesComponent implements OnInit {
   accountId = '';
   summonerMatches: Array<SummonerMatch>;
 
+  countApiCalls = 0;
+
   constructor(private _Activatedroute: ActivatedRoute,
     private _router: Router,
-    private _apiService: ApiService) { }
+    private _apiService: ApiService) {
+    console.log("Constructor de Matches llamado");
+    this.getSummonerMatches();
+  }
 
   sub;
 
   ngOnInit(): void {
-    this.sub = this._Activatedroute.paramMap.subscribe(params => {
-      this.summonerName = params.get('summonerName');
-    });
-    this._Activatedroute.queryParamMap
-      .subscribe(params => {
-        this.soloq = JSON.parse(params.get('soloq'));
-        this.flex = JSON.parse(params.get('flex'));
-        this.accountId = params.get('accountId');
-        this.page = JSON.parse(params.get('page'));
-        this.getSummonerMatches(this.summonerName, this.page);
-      });
+    //this.getSummonerMatches();
   }
 
-  getSummonerMatches(summonerName: string, page: number) {
-    this._apiService.getSummonerMatches(summonerName, null, page)
-      .subscribe(
-        (data: Array<SummonerMatch>) => { 
-          this.summonerMatches = data;
-          console.log(data);
-        }
-      );
+  getSummonerMatches() {
+    this.summonerMatches = new Array<SummonerMatch>();
+    this.sub = this._Activatedroute.paramMap.subscribe(params1 => {
+      console.log("Llamada con summoner: " + this.summonerName);
+      this.summonerName = params1.get('summonerName');
+      this._Activatedroute.queryParamMap
+        .subscribe(params => {
+          this.soloq = JSON.parse(params.get('soloq'));
+          this.flex = JSON.parse(params.get('flex'));
+          this.accountId = params.get('accountId');
+          this.page = JSON.parse(params.get('page'));
+
+          this.countApiCalls += 1;
+          console.log("Llamadas al api: " + this.countApiCalls);
+          this._apiService.getSummonerMatches(this.summonerName, null, this.page)
+            .subscribe(
+              (data: Array<SummonerMatch>) => {
+                this.summonerMatches = data;
+                console.log(data);
+              }
+            );
+        });
+    });
   }
 
   ngOnDestroy() {

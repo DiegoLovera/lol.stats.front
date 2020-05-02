@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SearchComponent } from './search/search.component';
-import { MatchesComponent } from './matches/matches.component';
-import { StatsComponent } from './stats/stats.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
   { path: '', component: SearchComponent},
-  { path: 'Summoner/:summonerName', component: MatchesComponent},
-  { path: 'Summoner/:summonerName/Stats', component: StatsComponent}
+  { path: 'Summoner/:summonerName', component: ProfileComponent}
 ];
 
 @NgModule({

@@ -10,7 +10,6 @@ import { MatchDetail, Summoner } from 'src/dtos/Entities';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  summonerName = '';
   soloq = true;
   flex = true;
   summoner: Summoner
@@ -19,9 +18,13 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+  onEnter(event: any) {
+    this.onClickSearch(event);
+  }
 
   onSummonerSet(event: any) {
-    this.summonerName = event.target.value;
+    //this.summonerName = event.target.value;
   }
 
   soloqChange(event:MatCheckboxChange): void {
@@ -32,12 +35,12 @@ export class SearchComponent implements OnInit {
     this.flex = event.checked;
   }
 
-  onClickSearch() {
-    this.apiService.getSummoner(this.summonerName).subscribe(
+  onClickSearch(summonerName: string) {
+    this.apiService.getSummoner(summonerName).subscribe(
       (data: Summoner) => { 
         this.summoner = data;
         console.log(data);
-        this.router.navigate(['/Summoner', this.summonerName], { queryParams: { soloq: this.soloq, flex: this.flex, accountId: this.summoner.accountId, page: 0 } });
+        this.router.navigate(['/Summoner', summonerName], { queryParams: { soloq: this.soloq, flex: this.flex, accountId: this.summoner.accountId, page: 0 } });
       }
     );
   }

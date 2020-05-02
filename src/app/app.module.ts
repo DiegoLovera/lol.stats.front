@@ -47,13 +47,16 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
+import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     MatchesComponent,
-    StatsComponent
+    StatsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -101,6 +104,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTreeModule,
     PortalModule,
     ScrollingModule,
+    NgMatSearchBarModule,
   ],
   exports: [
     BrowserModule,

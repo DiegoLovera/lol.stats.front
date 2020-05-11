@@ -1,61 +1,67 @@
 <div class="container">
-    <div class="row">
-        <mat-card *ngFor="let match of summonerMatches;" style="margin-bottom: 8px;"
-            [ngClass]="{ 'win-card': match.alliedTeam.win === 'Win', 'lose-card': match.alliedTeam.win === 'Fail' }">
-            <mat-card-content class="row">
-                <div class="col-2">
-                    <div class="row">
-                        <img height="100%" width="100%" src="{{match.currentParticipant.championImage}}" alt="">
-                    </div>
-                    <div class="row">
-                        <mat-card-subtitle>{{ match.queueId == 420 ? 'SoloQ' : 'Flex' }}</mat-card-subtitle>
-                    </div>
+    <mat-card *ngFor="let match of summonerMatches;" class="row" style="margin-bottom: 8px; margin-top: 8px;"
+        [ngClass]="{ 'win-card': match.alliedTeam.win === 'Win', 'lose-card': match.alliedTeam.win === 'Fail' }">
+        <mat-card-content>
+            <div class="col-2">
+                <div>
+                    <img height="60" width="60" src="{{match.currentParticipant.championImage}}" alt="">
                 </div>
-                <div class="col-7">
-                    <div class="row">
-                        <div class="col-6">
-                            <mat-card-title>
-                                {{ match.currentParticipant.participant.stats.kills }} /
-                                {{ match.currentParticipant.participant.stats.deaths }} /
-                                {{ match.currentParticipant.participant.stats.assists }}
-                            </mat-card-title>
-                            <mat-card-subtitle>
-                                CS: {{ match.currentParticipant.participant.stats.totalMinionsKilled }}
-                            </mat-card-subtitle>
-                        </div>
-                        <div class="col-6">
-                            <mat-card-title>
-                                KDA:
-                                {{ (((match.currentParticipant.participant.stats.kills + match.currentParticipant.participant.stats.assists) / (match.currentParticipant.participant.stats.deaths == 0 ? 1 : match.currentParticipant.participant.stats.deaths))).toFixed(2) }}
-                            </mat-card-title>
-                            <mat-card-subtitle>
-                                DMG: {{ match.currentParticipant.participant.stats.goldEarned }}
-                            </mat-card-subtitle>
-                        </div>
-                    </div>
+                <div>
+                    <img height="30" width="30"
+                        src="http://ddragon.leagueoflegends.com/cdn/10.9.1/img/spell/SummonerBarrier.png" alt="">
+                    <img height="30" width="30"
+                        src="http://ddragon.leagueoflegends.com/cdn/10.9.1/img/spell/SummonerFlash.png" alt="">
                 </div>
-                <div class="col-3">
-                    <div class="row" align="right">
-                        <div class="col-12">
-                            <mat-card-title>{{ (match.gameDuration/60).toFixed(2) }} Mins.</mat-card-title>
-                            <mat-card-subtitle>
-                                {{ (match.gameCreation + match.gameDuration) | date:'yyyy-MM-dd HH:mm' }}
-                            </mat-card-subtitle>
-                        </div>
-                    </div>
-                    <!--
-                    <div class="row" *ngFor="let teamMate of match.allies;">
-                        <img width="20px" height="20px" src="{{teamMate.championImage}}" alt="">
-                        {{ teamMate.participantIdentity.player.summonerName }}
-                    </div>
-                    -->
-                </div>
-            </mat-card-content>
-            <mat-card-actions class="row" style="margin-left: 0px; margin-right: 0px;">
-                <button style="width: 100%;" mat-stroked-button>Details</button>
-            </mat-card-actions>
-        </mat-card>
-    </div>
+            </div>
+            <div class="col-4">
+                <img height="40" width="40"
+                    src="http://ddragon.leagueoflegends.com/cdn/10.9.1/img/item/{{match.currentParticipant.participant.stats.item0}}.png"
+                    alt="">
+                <img height="40" width="40"
+                    src="http://ddragon.leagueoflegends.com/cdn/10.9.1/img/item/{{match.currentParticipant.participant.stats.item1}}.png"
+                    alt="">
+                <img height="40" width="40"
+                    src="http://ddragon.leagueoflegends.com/cdn/10.9.1/img/item/{{match.currentParticipant.participant.stats.item2}}.png"
+                    alt="">
+                <img height="40" width="40"
+                    src="http://ddragon.leagueoflegends.com/cdn/10.9.1/img/item/{{match.currentParticipant.participant.stats.item3}}.png"
+                    alt="">
+                <img height="40" width="40"
+                    src="http://ddragon.leagueoflegends.com/cdn/10.9.1/img/item/{{match.currentParticipant.participant.stats.item4}}.png"
+                    alt="">
+                <img height="40" width="40"
+                    src="http://ddragon.leagueoflegends.com/cdn/10.9.1/img/item/{{match.currentParticipant.participant.stats.item5}}.png"
+                    alt="">
+                <img height="40" width="40"
+                    src="http://ddragon.leagueoflegends.com/cdn/10.9.1/img/item/{{match.currentParticipant.participant.stats.item6}}.png"
+                    alt="">
+            </div>
+            <div class="col-3">
+                <p>
+                    {{ match.currentParticipant.participant.stats.kills }} /
+                    {{ match.currentParticipant.participant.stats.deaths }} /
+                    {{ match.currentParticipant.participant.stats.assists }} -
+                    KDA:
+                    {{ (((match.currentParticipant.participant.stats.kills + match.currentParticipant.participant.stats.assists) / (match.currentParticipant.participant.stats.deaths == 0 ? 1 : match.currentParticipant.participant.stats.deaths))).toFixed(2) }}
+                </p>
+                <p>
+                    CS: {{ match.currentParticipant.participant.stats.totalMinionsKilled }} / DMG:
+                    {{ match.currentParticipant.participant.stats.goldEarned }}
+                </p>
+            </div>
+            <div class="col-3">
+                <p class="right">
+                    {{ match.queueId == 420 ? 'SoloQ' : 'Flex' }} - {{ (match.gameDuration/60).toFixed(0) }} Minutes
+                </p>
+                <p class="right">
+                    {{ (match.gameCreation + match.gameDuration) | date:'yyyy-MM-dd HH:mm' }}
+                </p>
+            </div>
+        </mat-card-content>
+        <mat-card-actions style="margin-left: 0px; margin-right: 0px;">
+            <button style="width: 100%;" mat-stroked-button>Details</button>
+        </mat-card-actions>
+    </mat-card>
     <div class="row" style="width: 100%; padding-bottom: 16px;">
         <button mat-stroked-button color="accent" style="width: 100%;">Load More</button>
     </div>

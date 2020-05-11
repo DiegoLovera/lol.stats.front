@@ -24,14 +24,13 @@ export class MatchesComponent implements OnInit {
     private _router: Router,
     private _apiService: ApiService) {
       
-    this.getSummonerMatches();
+    this.getSummonerMatches(); 
   }
 
   ngOnInit(): void {
   }
 
   getSummonerMatches = () => {
-    //debugger;
     this.summonerMatches = new Array<SummonerMatch>();
     this._Activatedroute.paramMap.subscribe(params1 => {
       this.summonerName = params1.get('summonerName');
@@ -41,15 +40,11 @@ export class MatchesComponent implements OnInit {
           this.flex = JSON.parse(params.get('flex'));
           this.accountId = params.get('accountId');
           this.page = JSON.parse(params.get('page'));
-          console.log("Summoner nuevo: " + this.summonerName);
-          //debugger;
           this._apiService.getSummonerMatches(this.summonerName, null, this.page)
             .subscribe(
               (data: Array<SummonerMatch>) => {
                 this.summonerMatches = data;
                 console.log(data);
-                //debugger;
-                //this.sub.unsubscribe();
               }
             );
         }).unsubscribe();

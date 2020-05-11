@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Summoner, SummonerMatch } from 'src/dtos/Entities';
+import { Summoner, SummonerMatch, SummonerStats } from 'src/dtos/Entities';
 
 @Injectable({
     providedIn: 'root'
@@ -17,5 +17,10 @@ export class ApiService {
     getSummoner(summonerName: string) {
         console.log("Calling service: " + 'https://lol-stats-api.herokuapp.com/api/Riot/Summoner/' + summonerName)
         return this.http.get<Summoner>('https://lol-stats-api.herokuapp.com/api/Riot/Summoner/' + summonerName)
+    }
+
+    getSummonerStats(summonerName: string) {
+        console.log("Calling service: " + 'https://lol-stats-api.herokuapp.com/api/Summoner/' + summonerName + '/Stats')
+        return this.http.get<SummonerStats>('https://lol-stats-api.herokuapp.com/api/Summoner/' + summonerName + '/Stats')
     }
 }

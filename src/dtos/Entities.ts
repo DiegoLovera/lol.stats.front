@@ -246,3 +246,69 @@ export enum Win {
     Fail = "Fail",
     Win = "Win",
 }
+
+export class SummonerStats {
+    winRate:              number = 0;
+    wins:                 number = 0;
+    losses:               number = 0;
+    games:                number = 0;
+    kda:                  number = 0;
+    kills:                number = 0;
+    deaths:               number = 0;
+    assists:              number = 0;
+    maxKills:             number = 0;
+    maxDeaths:            number = 0;
+    maxAssists:           number = 0;
+    averageKills:         number = 0;
+    averageDeaths:        number = 0;
+    averageAssists:       number = 0;
+    uniqueChampions:      UniqueChampion[];
+    jungleWinRate:        number = 0;
+    jungleWins:           number = 0;
+    jungleLosses:         number = 0;
+    jungleGames:          number = 0;
+    bottomCarryWinRate:   number = 0;
+    bottomCarryWins:      number = 0;
+    bottomCarryLosses:    number = 0;
+    bottomCarryGames:     number = 0;
+    bottomSupportWinRate: number = 0;
+    bottomSupportWins:    number = 0;
+    bottomSupportLosses:  number = 0;
+    bottomSupportGames:   number = 0;
+    midlaneCarryWinRate:  number = 0;
+    midlaneCarryWins:     number = 0;
+    midlaneCarryLosses:   number = 0;
+    midlaneCarryGames:    number = 0;
+    topCarryWinRate:      number = 0;
+    topCarryWins:         number = 0;
+    topCarryLosses:       number = 0;
+    topCarryGames:        number = 0;
+    premades:             Premade[];
+}
+
+export class Premade {
+    accountId:    string = '';
+    summonerName: string = '';
+    wins:         number = 0;
+    losses:       number = 0;
+    games:        number = 0;
+    winRate:      number = 0;
+}
+
+export class UniqueChampion {
+    championId:     number = 0;
+    kills:          number = 0;
+    deaths:         number = 0;
+    assists:        number = 0;
+    kda:            number = 0;
+    maxKills:       number = 0;
+    maxDeaths:      number = 0;
+    maxAssists:     number = 0;
+    averageKills:   number = 0;
+    averageDeaths:  number = 0;
+    averageAssists: number = 0;
+    wins:           number = 0;
+    losses:         number = 0;
+    games:          number = 0;
+    winRate:        number = 0;
+}

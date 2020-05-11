@@ -1,1 +1,59 @@
-<p>stats works!</p>
+<div class="container">
+    <h1>General stats</h1>
+    <p>
+        Winrate: {{ (summonerStats.winRate * 100).toFixed(2) }}%
+    </p>
+    <p>
+        Games: {{ summonerStats.games }} / Wins: {{ summonerStats.wins }} / Losses: {{ summonerStats.losses }}
+    </p>
+    <p>
+        KDA: {{ summonerStats.kda.toFixed(2) }}
+    </p>
+    <p>
+        Kills: {{ summonerStats.kills }} / Deaths: {{ summonerStats.deaths }} / Assists: {{ summonerStats.assists }}
+    </p>
+    <p>
+        Max Kills: {{ summonerStats.maxKills }} / Max Deaths: {{ summonerStats.maxDeaths }} / Max Assists: {{ summonerStats.maxAssists }}
+    </p>
+    <p>
+        averageKills: {{ summonerStats.averageKills.toFixed(2) }} / averageDeaths: {{ summonerStats.averageDeaths.toFixed(2) }} / averageAssists: {{ summonerStats.averageAssists.toFixed(2) }}
+    </p>
+    <p>
+        jungleWinRate: {{ (summonerStats.jungleWinRate * 100).toFixed(2) }}%
+    </p>
+    <p>
+        jungleGames: {{ summonerStats.jungleGames }} / jungleWins: {{ summonerStats.jungleWins }} / jungleLosses: {{ summonerStats.jungleLosses }}
+    </p>
+    <p>
+        bottomCarryWinRate: {{ (summonerStats.bottomCarryWinRate * 100).toFixed(2) }}%
+    </p>
+    <p>
+        bottomCarryGames: {{ summonerStats.bottomCarryGames }} / bottomCarryWins: {{ summonerStats.bottomCarryWins }} / bottomCarryLosses: {{ summonerStats.bottomCarryLosses }}
+    </p>
+    <p>
+        bottomSupportWinRate: {{ (summonerStats.bottomSupportWinRate * 100).toFixed(2) }}%
+    </p>
+    <p>
+        bottomSupportGames: {{ summonerStats.bottomSupportGames }} / bottomSupportWins: {{ summonerStats.bottomSupportWins }} / bottomCarryLosses: {{ summonerStats.bottomCarryLosses }}
+    </p>
+    <p>
+        midlaneCarryWinRate: {{ (summonerStats.midlaneCarryWinRate * 100).toFixed(2) }}%
+    </p>
+    <p>
+        midlaneCarryGames: {{ summonerStats.midlaneCarryGames }} / midlaneCarryWins: {{ summonerStats.midlaneCarryWins }} / midlaneCarryLosses: {{ summonerStats.midlaneCarryLosses }}
+    </p>
+    <p>
+        topCarryWinRate: {{ (summonerStats.topCarryWinRate * 100).toFixed(2) }}%
+    </p>
+    <p>
+        topCarryGames: {{ summonerStats.topCarryGames }} / topCarryWins: {{ summonerStats.topCarryWins }} / topCarryLosses: {{ summonerStats.topCarryLosses }}
+    </p>
+    <h1>Premades</h1>
+    <div *ngFor="let premade of summonerStats.premades;">
+        <p> summonerName: {{ premade.summonerName }} - Winrate: {{ (premade.winRate * 100).toFixed(2) }}% </p>
+    </div>
+    <h1>Unique champions</h1>
+    <div *ngFor="let uniqueChampion of summonerStats.uniqueChampions;">
+        <p> Champion: {{ uniqueChampion.championId }} - Winrate: {{ (uniqueChampion.winRate * 100).toFixed(2) }}% </p>
+    </div>
+</div>
